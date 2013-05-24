@@ -1,0 +1,19 @@
+* Mon Dec 10 2012 Marko Saukko <marko.saukko@jollamobile.com> - 2.6.10
+- Updated packaging.
+
+* Tue Jun 26 2012 Marko Saukko <sage@merproject.org> - 2.6.10
+- Update to version 2.6.10 and update packaging.
+
+* Fri Jun 10 2011 Damien Lespiau <damien.lespiau@intel.com> - 2.4.25
+- Update to 2.4.25
+- Remove the mono support that was commented out
+- Port to spectacle
+
+* Thu Feb 11 2010 Passion Zhao <passion.zhao@intel.com> - 2.4.15
+- Update to 2.4.15 to address CVE-2010-0409: Buffer overflow in the GMIME_UUENCODE_LEN macro
+
+* Wed Aug 19 2009 Yi Yang <yi.y.yang@intel.com> 2.4.8
+- Update to 2.4.8
+
+* Wed Sep 03 2008 Anas Nashif <anas.nashif@intel.com> 
+- initial import

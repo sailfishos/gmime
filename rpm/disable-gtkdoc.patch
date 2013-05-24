@@ -1,0 +1,71 @@
+diff --git a/autogen.sh b/autogen.sh
+index 7e37eea..d33547e 100755
+--- a/autogen.sh
++++ b/autogen.sh
+@@ -29,12 +29,15 @@ if $have_libtool ; then : ; else
+ 	DIE=1
+ fi
+ 
+-(gtkdocize --version) < /dev/null > /dev/null 2>&1 || {
++gtkdocize=gtkdocize
++($gtkdocize --version) < /dev/null > /dev/null 2>&1 || {
+ 	echo
+-	echo "You must have gtk-doc installed to compile $PROJECT."
++	echo "You must have gtk-doc installed to compile docs for $PROJECT."
+ 	echo "Install the appropriate package for your distribution,"
+ 	echo "or get the source tarball at ftp://ftp.gnome.org/pub/GNOME/sources/gtk-doc/"
+-	DIE=1
++	#DIE=1
++        echo "EXTRA_DIST = missing-gtk-doc" > gtk-doc.make
++	gtkdocize=true
+ }
+ 
+ (autoconf --version) < /dev/null > /dev/null 2>&1 || {
+@@ -57,6 +60,9 @@ elif automake-1.10 --version < /dev/null > /dev/null 2>&1 ; then
+ elif automake-1.11 --version < /dev/null > /dev/null 2>&1 ; then
+     AUTOMAKE=automake-1.11
+     ACLOCAL=aclocal-1.11
++elif automake-1.12 --version < /dev/null > /dev/null 2>&1 ; then
++    AUTOMAKE=automake-1.12
++    ACLOCAL=aclocal-1.12
+ else
+ 	echo
+ 	echo "You must have automake 1.8.x installed to compile $PROJECT."
+@@ -81,10 +87,10 @@ if test -z "$AUTOGEN_SUBDIR_MODE"; then
+         fi
+ fi
+ 
+-$ACLOCAL $ACLOCAL_FLAGS || exit $?
++$ACLOCAL $ACLOCAL_FLAGS -I m4 || exit $?
+ 
+ libtoolize --force || exit $?
+-gtkdocize || exit $?
++$gtkdocize
+ 
+ autoheader || exit $?
+ 
+diff --git a/configure.ac b/configure.ac
+index 8560ffd..4c03e9c 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -195,15 +195,17 @@ AC_CHECK_FUNCS(select poll)
+ dnl ************************************
+ dnl Checks for gtk-doc and docbook-tools
+ dnl ************************************
++dnl NOTE: We need to use a separate automake conditional for this
++dnl       to make this work with the tarballs.
++AM_CONDITIONAL(ENABLE_GTK_DOC, test "x$enable_gtk_doc" = "xyes")
+ 
++m4_ifdef([GTK_DOC_CHECK], [
+ GTK_DOC_CHECK([1.8])
++])
+ 
+ AC_PATH_PROGS([DB2HTML], [db2html docbook2html])
+ AM_CONDITIONAL(HAVE_DOCBOOK, [test -n "$DB2HTML"])
+ 
+-dnl NOTE: We need to use a separate automake conditional for this
+-dnl       to make this work with the tarballs.
+-AM_CONDITIONAL(ENABLE_GTK_DOC, test "x$enable_gtk_doc" = "xyes")
+ 
+ dnl Check for profiling options
+ AC_ARG_ENABLE([profiling],
