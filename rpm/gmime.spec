@@ -12,7 +12,7 @@ Source0:    http://download.gnome.org/sources/gmime/2.6/gmime-%{version}.tar.xz
 Source1:    gpgme.m4
 Patch0:     gmime-2.5.8-gpg-error.patch
 Patch1:     disable-gtkdoc.patch
-Patch2:     Add-automake-1.15-support.patch
+Patch2:     Add-automake-1.16.1-support.patch
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires:  pkgconfig(glib-2.0) >= 2.12.0
@@ -45,7 +45,7 @@ to develop applications that use libgmime.
 %patch0 -p1
 # disable-gtkdoc.patch
 %patch1 -p1
-# Add-automake-1.15-support.patch
+# Add-automake-1.16.1-support.patch
 %patch2 -p1
 %__cp $RPM_SOURCE_DIR/gpgme.m4 m4/
 
