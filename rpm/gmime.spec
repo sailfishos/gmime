@@ -6,7 +6,7 @@ Summary:    Library for creating and parsing MIME messages
 Version:    2.6.20
 Release:    1
 Group:      System/Libraries
-License:    LGPLv2.1
+License:    LGPLv2
 URL:        http://spruce.sourceforge.net/gmime/
 Source0:    http://download.gnome.org/sources/gmime/2.6/gmime-%{version}.tar.xz
 Source1:    gpgme.m4
