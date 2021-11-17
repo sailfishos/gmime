@@ -1,7 +1,18 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Pekka Vuorela <pekka.vuorela@jolla.com>
+Date: Wed, 17 Nov 2021 14:13:00 +0200
+Subject: [PATCH] disabled gtk-doc
+
+---
+ autogen.sh   | 11 +++++++----
+ configure.ac |  9 +++++----
+ 2 files changed, 12 insertions(+), 8 deletions(-)
+
 diff --git a/autogen.sh b/autogen.sh
+index 569e6224..826c2fda 100755
 --- a/autogen.sh
 +++ b/autogen.sh
-@@ -29,12 +29,15 @@ if $have_libtool ; then : ; else
+@@ -41,12 +41,15 @@ if $have_libtool ; then : ; else
  	DIE=1
  fi
  
@@ -15,24 +26,25 @@ diff --git a/autogen.sh b/autogen.sh
  	echo "or get the source tarball at ftp://ftp.gnome.org/pub/GNOME/sources/gtk-doc/"
 -	DIE=1
 +	#DIE=1
-+        echo "EXTRA_DIST = missing-gtk-doc" > gtk-doc.make
++	echo "EXTRA_DIST = missing-gtk-doc" > gtk-doc.make
 +	gtkdocize=true
  }
  
  (autoconf --version) < /dev/null > /dev/null 2>&1 || {
-@@ -80,7 +83,7 @@ fi
+@@ -94,7 +97,7 @@ touch ChangeLog
  $ACLOCAL -I m4/ $ACLOCAL_FLAGS || exit $?
  
- libtoolize --force || exit $?
+ $LIBTOOLIZE --force || exit $?
 -gtkdocize || exit $?
 +$gtkdocize
  
  autoheader || exit $?
  
 diff --git a/configure.ac b/configure.ac
+index 857f4f28..622cafbc 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -197,15 +197,17 @@ AC_CHECK_FUNCS(select poll)
+@@ -193,16 +193,17 @@ AC_CHECK_FUNCS(select poll)
  dnl ************************************
  dnl Checks for gtk-doc and docbook-tools
  dnl ************************************
@@ -50,6 +62,10 @@ diff --git a/configure.ac b/configure.ac
 -dnl NOTE: We need to use a separate automake conditional for this
 -dnl       to make this work with the tarballs.
 -AM_CONDITIONAL(ENABLE_GTK_DOC, test "x$enable_gtk_doc" = "xyes")
- 
+-
  dnl Check for profiling options
  AC_ARG_ENABLE([profiling],
+               AC_HELP_STRING([--enable-profiling],
+-- 
+2.31.1
+
