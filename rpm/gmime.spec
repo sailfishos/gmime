@@ -44,9 +44,10 @@ to develop applications that use libgmime.
 %make_build
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=$RPM_BUILD_ROOT
 %make_install
+
+# remove unused static libraries, FIXME do in configure.ac
+find %{buildroot} -name \*.a -delete
 
 %post -p /sbin/ldconfig
 
