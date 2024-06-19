@@ -1,11 +1,12 @@
 Name:       gmime
 Summary:    Library for creating and parsing MIME messages
-Version:    3.2.8
+Version:    3.2.14
 Release:    1
 License:    LGPLv2
 URL:        https://gitlab.gnome.org/GNOME/gmime
 Source0:    gmime-%{version}.tar.xz
 Patch1:     0001-disabled-gtk-doc.patch
+Patch2:     0002-Check-ac_cv_sys_file_offset_bits-against-empty-strin.patch
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires:  pkgconfig(glib-2.0) >= 2.12.0
@@ -54,12 +55,10 @@ find %{buildroot} -name \*.a -delete
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-,root,root,-)
 %license COPYING
 %{_libdir}/lib*.so.*
 
 %files devel
-%defattr(-,root,root,-)
 %doc AUTHORS
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/gmime-*.pc

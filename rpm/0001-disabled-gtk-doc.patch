@@ -9,7 +9,7 @@ Subject: [PATCH] disabled gtk-doc
  2 files changed, 12 insertions(+), 8 deletions(-)
 
 diff --git a/autogen.sh b/autogen.sh
-index 569e6224..826c2fda 100755
+index 4d4a8b8b..a2f16071 100755
 --- a/autogen.sh
 +++ b/autogen.sh
 @@ -41,12 +41,15 @@ if $have_libtool ; then : ; else
@@ -32,19 +32,19 @@ index 569e6224..826c2fda 100755
  
  (autoconf --version) < /dev/null > /dev/null 2>&1 || {
 @@ -94,7 +97,7 @@ touch ChangeLog
- $ACLOCAL -I m4/ $ACLOCAL_FLAGS || exit $?
+ ${ACLOCAL} -I m4/ ${ACLOCAL_FLAGS} || exit $?
  
- $LIBTOOLIZE --force || exit $?
+ ${LIBTOOLIZE} --force || exit $?
 -gtkdocize || exit $?
 +$gtkdocize
  
  autoheader || exit $?
  
 diff --git a/configure.ac b/configure.ac
-index 857f4f28..622cafbc 100644
+index c6c60296..f2cdad40 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -193,16 +193,17 @@ AC_CHECK_FUNCS(select poll)
+@@ -187,16 +187,17 @@ AC_CHECK_FUNCS(select poll)
  dnl ************************************
  dnl Checks for gtk-doc and docbook-tools
  dnl ************************************
@@ -57,7 +57,7 @@ index 857f4f28..622cafbc 100644
 +])
  
  AC_PATH_PROGS([DB2HTML], [db2html docbook2html])
- AM_CONDITIONAL(HAVE_DOCBOOK, [test -n "$DB2HTML"])
+ AM_CONDITIONAL(HAVE_DOCBOOK, [test -n "$DB2HTML"], "true", "false")
  
 -dnl NOTE: We need to use a separate automake conditional for this
 -dnl       to make this work with the tarballs.
@@ -65,7 +65,4 @@ index 857f4f28..622cafbc 100644
 -
  dnl Check for profiling options
  AC_ARG_ENABLE([profiling],
-               AC_HELP_STRING([--enable-profiling],
--- 
-2.31.1
-
+               AS_HELP_STRING([--enable-profiling],[enable profiling compile flags [[default=no]]]),,
