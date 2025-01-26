@@ -6,7 +6,7 @@ License:    LGPLv2
 URL:        https://gitlab.gnome.org/GNOME/gmime
 Source0:    gmime-%{version}.tar.xz
 Patch1:     0001-disabled-gtk-doc.patch
-Patch2:     0002-Check-ac_cv_sys_file_offset_bits-against-empty-strin.patch
+Patch2:     0002-Update-autogen.sh-to-support-automake-1.17.patch
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires:  pkgconfig(glib-2.0) >= 2.12.0

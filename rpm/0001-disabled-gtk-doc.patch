@@ -9,7 +9,7 @@ Subject: [PATCH] disabled gtk-doc
  2 files changed, 12 insertions(+), 8 deletions(-)
 
 diff --git a/autogen.sh b/autogen.sh
-index 4d4a8b8b..a2f16071 100755
+index c3b21f6e0aad5ad5165ad4a484abaebae4e4c977..5ff83d60025c2dc3b77dfb5196fb11fcea043fe7 100755
 --- a/autogen.sh
 +++ b/autogen.sh
 @@ -41,12 +41,15 @@ if $have_libtool ; then : ; else
@@ -41,10 +41,10 @@ index 4d4a8b8b..a2f16071 100755
  autoheader || exit $?
  
 diff --git a/configure.ac b/configure.ac
-index c6c60296..f2cdad40 100644
+index b71fa5e72a57d88908f975adc43fd6fa6a2707ea..ed9c7ad44955e7e61564a2663f50fc0ee6b257fe 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -187,16 +187,17 @@ AC_CHECK_FUNCS(select poll)
+@@ -217,16 +217,17 @@ AC_CHECK_FUNCS(uname)
  dnl ************************************
  dnl Checks for gtk-doc and docbook-tools
  dnl ************************************

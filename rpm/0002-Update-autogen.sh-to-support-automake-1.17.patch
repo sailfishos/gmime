@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@jolla.com>
+Date: Sun, 26 Jan 2025 12:45:34 +0200
+Subject: [PATCH] Update autogen.sh to support automake 1.17
+
+---
+ autogen.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/autogen.sh b/autogen.sh
+index 5ff83d60025c2dc3b77dfb5196fb11fcea043fe7..bfa559c1c43b19b2ffa3679b2b5996ed0ff301f9 100755
+--- a/autogen.sh
++++ b/autogen.sh
+@@ -60,7 +60,7 @@ gtkdocize=gtkdocize
+ 	DIE=1
+ }
+ 
+-for automake_version in 1.9 1.10 1.11 1.12 1.13 1.14 1.15 1.16; do
++for automake_version in 1.9 1.10 1.11 1.12 1.13 1.14 1.15 1.16 1.17; do
+     if automake-${automake_version} --version < /dev/null > /dev/null 2>&1 ; then
+         AUTOMAKE=automake-${automake_version}
+         ACLOCAL=aclocal-${automake_version}
